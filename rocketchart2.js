@@ -1,10 +1,3 @@
-<!-- LineChart generated in R 3.4.3 by googleVis 0.6.2 package -->
-<!-- Tue Mar 20 10:41:08 2018 -->
-
-
-<!-- jsHeader -->
-<script type="text/javascript">
-
 
 // jsData 
 function gvisDatarocketchart () {
@@ -2062,18 +2055,3 @@ callbacks.shift()();
 } });
 }, 100);
 }
-
-
-// jsFooter
-</script>
-
-
-<!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartrocketchart"></script>
-
-
-<!-- divChart -->
-  
-<div id="rocketchart" 
-  style="width: 1536; height: 756;">
-</div>
