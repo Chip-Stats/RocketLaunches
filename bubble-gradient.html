@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+app.title = '气泡图';
+var data = [
+[[new Date(1961,04,12),1],[new Date(1961,08,06),2],[new Date(1962,08,11),3],[new Date(1962,08,12),4],[new Date(1963,06,14),5],[new Date(1963,06,16),6],[new Date(1964,10,13),7],[new Date(1965,03,18),8],[new Date(1967,04,24),9],[new Date(1968,10,26),10],[new Date(1969,01,14),11],[new Date(1969,01,18),12],[new Date(1969,10,11),13],[new Date(1969,10,12),14],[new Date(1969,10,13),15],[new Date(1970,06,01),16],[new Date(1971,04,22),17],[new Date(1971,06,06),18],[new Date(1973,09,27),19],[new Date(1973,12,18),20],[new Date(1974,07,03),21],[new Date(1974,08,26),22],[new Date(1974,12,02),23],[new Date(1975,01,10),24],[new Date(1975,05,24),25],[new Date(1975,07,15),26],[new Date(1976,07,06),27],[new Date(1976,09,15),28],[new Date(1976,10,14),29],[new Date(1977,02,07),30],[new Date(1977,10,09),31],[new Date(1977,12,10),32],[new Date(1978,01,10),33],[new Date(1978,03,02),34],[new Date(1978,06,15),35],[new Date(1978,06,27),36],[new Date(1978,08,26),37],[new Date(1979,02,25),38],[new Date(1979,04,10),39],[new Date(1980,04,09),40],[new Date(1980,05,26),41],[new Date(1980,06,05),42],[new Date(1980,07,23),43],[new Date(1980,09,18),44],[new Date(1980,11,27),45],[new Date(1981,03,12),46],[new Date(1981,03,22),47],[new Date(1981,05,14),48],[new Date(1982,05,13),49],[new Date(1982,06,24),50],[new Date(1982,08,19),51],[new Date(1983,04,20),52],[new Date(1983,06,27),53],[new Date(1984,02,08),54],[new Date(1984,04,03),55],[new Date(1984,07,17),56],[new Date(1985,06,06),57],[new Date(1985,09,17),58],[new Date(1986,03,13),59],[new Date(1987,02,05),60],[new Date(1987,07,22),61],[new Date(1987,12,21),62],[new Date(1988,06,07),63],[new Date(1988,08,29),64],[new Date(1988,11,26),65],[new Date(1989,09,05),66],[new Date(1990,02,11),67],[new Date(1990,08,01),68],[new Date(1990,12,02),69],[new Date(1991,05,18),70],[new Date(1991,10,02),71]],
+[[new Date(1962,02,20),1],[new Date(1962,05,24),2],[new Date(1962,10,03),3],[new Date(1963,05,15),4],[new Date(1965,03,23),5],[new Date(1965,06,03),6],[new Date(1965,08,21),7],[new Date(1965,12,04),8],[new Date(1965,12,15),9],[new Date(1966,03,16),10],[new Date(1966,06,03),11],[new Date(1966,07,18),12],[new Date(1966,09,12),13],[new Date(1966,11,11),14],[new Date(1967,11,09),15],[new Date(1968,01,22),16],[new Date(1968,04,04),17],[new Date(1968,10,11),18],[new Date(1968,12,21),19],[new Date(1969,03,03),20],[new Date(1969,05,18),21],[new Date(1969,07,16),22],[new Date(1969,11,14),23],[new Date(1970,04,11),24],[new Date(1971,01,31),25],[new Date(1971,07,26),26],[new Date(1972,04,16),27],[new Date(1972,12,07),28],[new Date(1973,05,14),29],[new Date(1973,05,25),30],[new Date(1973,07,28),31],[new Date(1973,11,16),32],[new Date(1975,07,15),33],[new Date(1981,04,12),34],[new Date(1999,12,20),35],[new Date(2009,09,28),36]],
+[[new Date(1974,12,10),1],[new Date(1975,08,20),2],[new Date(1975,09,09),3],[new Date(1976,01,15),4],[new Date(1977,08,20),5],[new Date(1977,09,05),6],[new Date(1997,09,15),7]],
+[[new Date(1981,11,12),1],[new Date(1982,03,22),2],[new Date(1982,06,27),3],[new Date(1982,11,11),4],[new Date(1983,04,04),5],[new Date(1983,06,18),6],[new Date(1983,08,30),7],[new Date(1983,11,28),8]],
+[[new Date(1984,02,03),1],[new Date(1984,08,30),2],[new Date(1984,10,05),3],[new Date(1984,11,08),4],[new Date(1985,01,24),5],[new Date(1985,04,12),6],[new Date(1985,04,29),7],[new Date(1985,06,17),8],[new Date(1985,07,29),9],[new Date(1985,08,27),10],[new Date(1985,10,03),11],[new Date(1985,10,30),12],[new Date(1985,11,27),13],[new Date(1986,01,12),14],[new Date(1988,09,29),15],[new Date(1988,12,02),16],[new Date(1989,03,13),17],[new Date(1989,05,04),18],[new Date(1989,08,08),19],[new Date(1989,10,18),20],[new Date(1989,11,22),21],[new Date(1990,01,09),22],[new Date(1990,02,28),23],[new Date(1990,04,24),24],[new Date(1990,10,06),25],[new Date(1990,11,15),26],[new Date(1990,12,02),27],[new Date(1991,04,05),28],[new Date(1991,04,28),29],[new Date(1991,06,05),30],[new Date(1991,08,02),31],[new Date(1991,09,12),32],[new Date(1991,11,24),33],[new Date(1992,01,22),34],[new Date(1992,03,24),35],[new Date(1992,05,07),36],[new Date(1992,06,25),37],[new Date(1992,07,31),38],[new Date(1992,09,12),39],[new Date(1992,10,22),40],[new Date(1992,12,02),41],[new Date(1993,01,13),42],[new Date(1993,04,08),43],[new Date(1993,04,26),44],[new Date(1993,06,21),45],[new Date(1993,09,22),46],[new Date(1993,10,18),47],[new Date(1993,12,02),48],[new Date(1994,02,03),49],[new Date(1994,03,04),50],[new Date(1994,04,04),51],[new Date(1994,07,08),52],[new Date(1994,09,09),53],[new Date(1994,09,30),54],[new Date(1994,11,03),55],[new Date(1995,02,03),56],[new Date(1995,03,02),57],[new Date(1995,07,13),58],[new Date(1997,02,11),59],[new Date(1998,06,02),60],[new Date(1998,10,29),61],[new Date(1999,05,27),62],[new Date(2000,10,11),63]],
+[[new Date(1990,04,05),1],[new Date(1991,07,17),2],[new Date(1993,02,09),3],[new Date(1993,04,25),4],[new Date(1994,05,19),5],[new Date(1994,06,27),6],[new Date(1995,04,03),7],[new Date(1996,03,09),8],[new Date(1996,05,17),9],[new Date(1996,07,02),10],[new Date(1996,08,21),11],[new Date(1997,04,21),12],[new Date(1997,08,01),13],[new Date(1997,08,29),14],[new Date(1997,10,22),15],[new Date(1997,12,23),16],[new Date(1998,02,26),17],[new Date(1998,04,02),18],[new Date(1998,08,02),19],[new Date(1998,09,23),20],[new Date(1998,10,22),21],[new Date(1998,12,06),22],[new Date(1999,03,05),23],[new Date(1999,05,18),24],[new Date(1999,12,04),25],[new Date(2000,06,07),26],[new Date(2000,10,09),27],[new Date(2002,02,05),28],[new Date(2003,01,25),29],[new Date(2003,04,28),30],[new Date(2003,06,26),31],[new Date(2003,08,13),32],[new Date(2005,04,15),33],[new Date(2006,03,28),34],[new Date(2007,04,25),35],[new Date(2008,04,16),36],[new Date(2008,10,19),37],[new Date(2010,09,26),38],[new Date(2010,11,20),39],[new Date(2011,02,06),40],[new Date(2011,06,30),41],[new Date(2011,09,27),42],[new Date(2012,06,13),43],[new Date(2013,04,21),44],[new Date(2013,06,28),45],[new Date(2013,09,07),46],[new Date(2013,09,18),47],[new Date(2013,11,20),48],[new Date(2014,01,09),49],[new Date(2014,07,13),50]],
+[[new Date(1992,03,17),1],[new Date(1992,07,27),2],[new Date(1993,01,24),3],[new Date(1993,07,01),4],[new Date(1994,01,08),5],[new Date(1994,07,01),6],[new Date(1995,03,22),7],[new Date(1995,09,03),8],[new Date(1995,09,11),9],[new Date(1996,02,21),10],[new Date(1996,08,17),11],[new Date(1997,02,10),12],[new Date(1997,08,05),13],[new Date(1998,08,13),14],[new Date(1998,08,25),15],[new Date(1999,02,20),16],[new Date(2000,04,04),17],[new Date(2000,10,31),18],[new Date(2001,04,28),19],[new Date(2002,04,25),20],[new Date(2002,05,05),21],[new Date(2002,10,30),22],[new Date(2003,04,26),23],[new Date(2003,10,18),24],[new Date(2004,04,19),25],[new Date(2004,10,14),26],[new Date(2005,04,15),27],[new Date(2005,10,01),28],[new Date(2006,03,30),29],[new Date(2006,09,18),30],[new Date(2007,04,07),31],[new Date(2007,10,10),32],[new Date(2008,04,08),33],[new Date(2008,10,12),34],[new Date(2009,03,26),35],[new Date(2009,05,27),36],[new Date(2009,09,30),37],[new Date(2009,12,20),38],[new Date(2010,02,03),39],[new Date(2010,04,02),40],[new Date(2010,04,28),41],[new Date(2010,06,15),42],[new Date(2010,06,30),43],[new Date(2010,09,10),44],[new Date(2010,10,07),45],[new Date(2010,10,27),46],[new Date(2010,12,15),47],[new Date(2011,01,20),48],[new Date(2011,01,28),49],[new Date(2011,04,04),50],[new Date(2011,04,27),51],[new Date(2011,06,07),52],[new Date(2011,06,21),53],[new Date(2011,07,18),54],[new Date(2011,10,14),55],[new Date(2011,10,30),56],[new Date(2011,12,21),57],[new Date(2012,01,25),58],[new Date(2012,04,20),59],[new Date(2012,05,15),60],[new Date(2012,07,15),61],[new Date(2012,07,22),62],[new Date(2012,08,01),63],[new Date(2012,10,23),64],[new Date(2012,10,31),65],[new Date(2012,12,19),66],[new Date(2013,02,11),67],[new Date(2013,03,28),68],[new Date(2013,04,19),69],[new Date(2013,04,24),70],[new Date(2013,05,28),71],[new Date(2013,06,25),72],[new Date(2013,07,27),73],[new Date(2013,09,25),74],[new Date(2013,11,07),75],[new Date(2013,11,25),76],[new Date(2014,02,05),77],[new Date(2014,03,25),78],[new Date(2014,04,09),79],[new Date(2014,04,16),80],[new Date(2014,05,28),81],[new Date(2014,07,08),82],[new Date(2014,07,18),83],[new Date(2014,07,23),84],[new Date(2014,09,25),85],[new Date(2014,10,29),86],[new Date(2014,11,23),87],[new Date(2014,12,26),88],[new Date(2015,02,17),89],[new Date(2015,03,27),90],[new Date(2015,07,03),91],[new Date(2015,07,22),92],[new Date(2015,09,02),93],[new Date(2015,10,01),94],[new Date(2015,12,11),95],[new Date(2015,12,15),96],[new Date(2015,12,21),97],[new Date(2016,03,13),98],[new Date(2016,03,18),99],[new Date(2016,03,31),100],[new Date(2016,04,28),101],[new Date(2016,07,07),102],[new Date(2016,07,16),103],[new Date(2016,10,19),104],[new Date(2016,11,17),105],[new Date(2017,02,22),106],[new Date(2017,04,20),107],[new Date(2017,06,14),108],[new Date(2017,07,28),109],[new Date(2017,09,12),110],[new Date(2017,10,14),111],[new Date(2017,12,17),112],[new Date(2018,02,13),113],[new Date(2018,03,21),114]],
+[[new Date(1995,06,27),1],[new Date(1995,09,07),2],[new Date(1995,10,20),3],[new Date(1995,11,12),4],[new Date(1996,01,11),5],[new Date(1996,02,22),6],[new Date(1996,03,22),7],[new Date(1996,05,19),8],[new Date(1996,06,20),9]],
+[[new Date(1996,09,26),1],[new Date(1996,11,19),2],[new Date(1997,01,12),3],[new Date(1997,04,04),4],[new Date(1997,05,15),5],[new Date(1997,07,01),6],[new Date(1997,08,07),7],[new Date(1997,09,26),8],[new Date(1997,11,19),9],[new Date(1998,01,23),10],[new Date(1998,04,17),11],[new Date(1998,12,04),12],[new Date(1999,06,23),13],[new Date(2000,02,11),14],[new Date(2000,05,19),15],[new Date(2000,09,08),16],[new Date(2000,12,01),17],[new Date(2001,02,07),18],[new Date(2001,03,08),19],[new Date(2001,04,19),20],[new Date(2001,07,12),21],[new Date(2001,08,10),22],[new Date(2001,12,05),23],[new Date(2002,03,01),24],[new Date(2002,04,08),25],[new Date(2002,06,05),26],[new Date(2002,10,07),27],[new Date(2002,11,23),28],[new Date(2005,07,26),29],[new Date(2006,07,04),30],[new Date(2006,09,09),31],[new Date(2006,12,10),32],[new Date(2007,06,08),33],[new Date(2007,08,08),34],[new Date(2007,10,23),35],[new Date(2008,02,07),36],[new Date(2008,03,11),37],[new Date(2008,05,31),38],[new Date(2008,11,15),39],[new Date(2009,03,15),40],[new Date(2009,05,11),41],[new Date(2009,07,15),42],[new Date(2009,08,29),43],[new Date(2009,11,16),44],[new Date(2010,02,08),45],[new Date(2010,04,05),46],[new Date(2010,05,14),47],[new Date(2011,02,24),48],[new Date(2011,05,16),49],[new Date(2011,07,08),50]],
+[[new Date(1998,10,21),1],[new Date(1999,12,10),2],[new Date(2000,03,21),3],[new Date(2000,09,14),4],[new Date(2000,11,16),5],[new Date(2000,12,20),6],[new Date(2001,03,08),7],[new Date(2002,03,01),8],[new Date(2002,07,05),9],[new Date(2002,08,28),10],[new Date(2003,04,09),11],[new Date(2003,06,11),12],[new Date(2003,09,27),13],[new Date(2004,03,02),14],[new Date(2004,07,18),15],[new Date(2004,12,18),16],[new Date(2005,02,12),17],[new Date(2005,08,11),18],[new Date(2005,11,16),19],[new Date(2005,12,21),20],[new Date(2006,03,11),21],[new Date(2006,05,27),22],[new Date(2006,08,11),23],[new Date(2006,10,13),24],[new Date(2006,12,08),25],[new Date(2007,03,11),26],[new Date(2007,05,04),27],[new Date(2007,08,14),28],[new Date(2007,10,05),29],[new Date(2007,11,14),30],[new Date(2007,12,21),31],[new Date(2008,03,09),32],[new Date(2008,04,18),33],[new Date(2008,06,12),34],[new Date(2008,07,07),35],[new Date(2008,08,14),36],[new Date(2008,12,20),37],[new Date(2009,02,12),38],[new Date(2009,05,14),39],[new Date(2009,07,01),40],[new Date(2009,08,21),41],[new Date(2009,10,01),42],[new Date(2009,10,29),43],[new Date(2009,12,18),44],[new Date(2010,05,21),45],[new Date(2010,06,26),46],[new Date(2010,08,04),47],[new Date(2010,10,28),48],[new Date(2010,11,26),49],[new Date(2010,12,29),50],[new Date(2011,02,16),51],[new Date(2011,04,22),52],[new Date(2011,05,20),53],[new Date(2011,08,06),54],[new Date(2011,09,21),55],[new Date(2011,10,21),56],[new Date(2011,12,17),57],[new Date(2012,02,13),58],[new Date(2012,03,23),59],[new Date(2012,05,15),60],[new Date(2012,07,05),61],[new Date(2012,08,02),62],[new Date(2012,09,28),63],[new Date(2012,10,12),64],[new Date(2012,11,10),65],[new Date(2012,12,02),66],[new Date(2012,12,19),67],[new Date(2013,02,07),68],[new Date(2013,05,07),69],[new Date(2013,06,05),70],[new Date(2013,06,25),71],[new Date(2013,07,25),72],[new Date(2013,08,29),73],[new Date(2013,12,19),74],[new Date(2014,02,06),75],[new Date(2014,03,22),76],[new Date(2014,04,03),77],[new Date(2014,04,30),78],[new Date(2014,07,10),79],[new Date(2014,07,29),80],[new Date(2014,08,22),81],[new Date(2014,09,11),82],[new Date(2014,10,16),83],[new Date(2014,12,06),84],[new Date(2014,12,18),85],[new Date(2015,02,11),86],[new Date(2015,03,27),87],[new Date(2015,04,26),88],[new Date(2015,05,27),89],[new Date(2015,06,23),90],[new Date(2015,07,15),91],[new Date(2015,08,20),92],[new Date(2015,09,11),93],[new Date(2015,09,30),94],[new Date(2015,11,10),95],[new Date(2015,12,03),96],[new Date(2015,12,17),97],[new Date(2016,01,27),98],[new Date(2016,03,09),99],[new Date(2016,04,25),100],[new Date(2016,05,24),101],[new Date(2016,06,18),102],[new Date(2016,08,24),103],[new Date(2016,09,16),104],[new Date(2016,10,05),105],[new Date(2016,11,17),106],[new Date(2016,12,05),107],[new Date(2016,12,21),108],[new Date(2017,01,28),109],[new Date(2017,02,14),110],[new Date(2017,03,07),111],[new Date(2017,05,04),112],[new Date(2017,05,18),113],[new Date(2017,06,01),114],[new Date(2017,06,28),115],[new Date(2017,08,02),116],[new Date(2017,09,29),117],[new Date(2017,11,08),118],[new Date(2017,12,12),119],[new Date(2018,01,25),120],[new Date(2018,03,09),121]],
+[[new Date(1999,11,19),1],[new Date(2001,01,09),2],[new Date(2002,03,25),3],[new Date(2002,12,29),4],[new Date(2003,10,15),5],[new Date(2005,10,12),6],[new Date(2008,09,25),7],[new Date(2010,01,16),8],[new Date(2010,03,05),9],[new Date(2010,06,02),10],[new Date(2010,06,15),11],[new Date(2010,07,31),12],[new Date(2010,08,09),13],[new Date(2010,08,24),14],[new Date(2010,09,04),15],[new Date(2010,09,22),16],[new Date(2010,10,01),17],[new Date(2010,10,06),18],[new Date(2010,10,31),19],[new Date(2010,11,04),20],[new Date(2010,11,24),21],[new Date(2010,12,17),22],[new Date(2011,04,09),23],[new Date(2011,06,20),24],[new Date(2011,07,06),25],[new Date(2011,07,11),26],[new Date(2011,07,26),27],[new Date(2011,07,29),28],[new Date(2011,08,11),29],[new Date(2011,08,15),30],[new Date(2011,09,18),31],[new Date(2011,09,29),32],[new Date(2011,10,07),33],[new Date(2011,10,09),34],[new Date(2011,10,20),35],[new Date(2011,10,31),36],[new Date(2011,11,29),37],[new Date(2011,12,01),38],[new Date(2011,12,19),39],[new Date(2011,12,22),40],[new Date(2012,01,09),41],[new Date(2012,01,13),42],[new Date(2012,02,24),43],[new Date(2012,03,31),44],[new Date(2012,04,29),45],[new Date(2012,05,06),46],[new Date(2012,05,10),47],[new Date(2012,05,26),48],[new Date(2012,05,29),49],[new Date(2012,06,16),50],[new Date(2012,07,25),51],[new Date(2012,09,18),52],[new Date(2012,09,29),53],[new Date(2012,10,14),54],[new Date(2012,10,25),55],[new Date(2012,11,18),56],[new Date(2012,11,27),57],[new Date(2012,12,18),58],[new Date(2013,04,26),59],[new Date(2013,05,01),60],[new Date(2013,06,11),61],[new Date(2013,07,15),62],[new Date(2013,07,19),63],[new Date(2013,09,01),64],[new Date(2013,09,23),65],[new Date(2013,10,25),66],[new Date(2013,10,29),67],[new Date(2013,11,20),68],[new Date(2013,11,25),69],[new Date(2013,12,01),70],[new Date(2013,12,20),71],[new Date(2014,03,31),72],[new Date(2014,08,09),73],[new Date(2014,08,19),74],[new Date(2014,09,04),75],[new Date(2014,09,08),76],[new Date(2014,09,28),77],[new Date(2014,10,20),78],[new Date(2014,10,23),79],[new Date(2014,10,27),80],[new Date(2014,11,14),81],[new Date(2014,11,20),82],[new Date(2014,12,07),83],[new Date(2014,12,10),84],[new Date(2014,12,27),85],[new Date(2014,12,31),86],[new Date(2015,03,30),87],[new Date(2015,06,26),88],[new Date(2015,07,25),89],[new Date(2015,08,27),90],[new Date(2015,09,12),91],[new Date(2015,09,14),92],[new Date(2015,09,19),93],[new Date(2015,09,25),94],[new Date(2015,09,29),95],[new Date(2015,10,07),96],[new Date(2015,10,16),97],[new Date(2015,10,26),98],[new Date(2015,11,03),99],[new Date(2015,11,08),100],[new Date(2015,11,20),101],[new Date(2015,11,26),102],[new Date(2015,12,09),103],[new Date(2015,12,17),104],[new Date(2015,12,28),105],[new Date(2016,01,15),106],[new Date(2016,02,01),107],[new Date(2016,03,29),108],[new Date(2016,04,05),109],[new Date(2016,05,15),110],[new Date(2016,05,30),111],[new Date(2016,06,12),112],[new Date(2016,06,25),113],[new Date(2016,06,29),114],[new Date(2016,08,05),115],[new Date(2016,08,09),116],[new Date(2016,08,15),117],[new Date(2016,09,15),118],[new Date(2016,10,16),119],[new Date(2016,11,03),120],[new Date(2016,11,08),121],[new Date(2016,11,11),122],[new Date(2016,11,22),123],[new Date(2016,12,10),124],[new Date(2016,12,21),125],[new Date(2016,12,28),126],[new Date(2017,01,05),127],[new Date(2017,03,02),128],[new Date(2017,04,12),129],[new Date(2017,04,20),130],[new Date(2017,06,15),131],[new Date(2017,09,29),132],[new Date(2017,11,05),133],[new Date(2017,11,14),134],[new Date(2017,11,24),135],[new Date(2017,12,03),136],[new Date(2017,12,10),137],[new Date(2017,12,23),138],[new Date(2017,12,25),139],[new Date(2018,01,09),140],[new Date(2018,01,11),141],[new Date(2018,01,13),142],[new Date(2018,01,19),143],[new Date(2018,01,25),144],[new Date(2018,02,02),145],[new Date(2018,02,12),146],[new Date(2018,03,17),147]],
+[[new Date(2003,05,13),1],[new Date(2004,09,20),2],[new Date(2008,10,22),3],[new Date(2010,07,12),4],[new Date(2011,04,20),5],[new Date(2011,07,15),6],[new Date(2011,10,12),7],[new Date(2012,04,26),8],[new Date(2013,02,25),9],[new Date(2013,07,01),10],[new Date(2013,11,05),11],[new Date(2014,01,05),12],[new Date(2014,04,04),13],[new Date(2014,10,15),14],[new Date(2014,12,18),15],[new Date(2015,03,28),16],[new Date(2015,08,27),17],[new Date(2015,09,28),18],[new Date(2016,01,20),19],[new Date(2016,03,10),20],[new Date(2016,04,28),21],[new Date(2016,06,22),22],[new Date(2016,09,08),23],[new Date(2016,09,26),24],[new Date(2016,12,07),25],[new Date(2017,02,15),26],[new Date(2017,05,05),27],[new Date(2017,06,05),28],[new Date(2017,06,23),29],[new Date(2018,01,12),30]],
+[[new Date(2008,09,08),1],[new Date(2009,07,14),2],[new Date(2010,06,04),3],[new Date(2010,12,08),4],[new Date(2012,05,22),5],[new Date(2012,10,08),6],[new Date(2013,03,01),7],[new Date(2013,09,29),8],[new Date(2013,12,03),9],[new Date(2014,01,06),10],[new Date(2014,04,18),11],[new Date(2014,07,14),12],[new Date(2014,08,05),13],[new Date(2014,09,07),14],[new Date(2014,09,21),15],[new Date(2015,01,10),16],[new Date(2015,02,11),17],[new Date(2015,03,02),18],[new Date(2015,04,14),19],[new Date(2015,04,27),20],[new Date(2015,12,22),21],[new Date(2016,01,17),22],[new Date(2016,03,04),23],[new Date(2016,04,08),24],[new Date(2016,05,06),25],[new Date(2016,05,27),26],[new Date(2016,06,15),27],[new Date(2016,07,18),28],[new Date(2016,08,14),29],[new Date(2017,01,14),30],[new Date(2017,02,19),31],[new Date(2017,03,16),32],[new Date(2017,03,30),33],[new Date(2017,05,01),34],[new Date(2017,05,15),35],[new Date(2017,06,03),36],[new Date(2017,06,23),37],[new Date(2017,06,25),38],[new Date(2017,07,05),39],[new Date(2017,08,14),40],[new Date(2017,08,24),41],[new Date(2017,09,07),42],[new Date(2017,10,09),43],[new Date(2017,10,11),44],[new Date(2017,10,30),45],[new Date(2017,12,15),46],[new Date(2017,12,23),47],[new Date(2018,01,08),48],[new Date(2018,01,31),49],[new Date(2018,02,06),50],[new Date(2018,02,22),51],[new Date(2018,03,06),52]],
+[[new Date(2009,04,20),1],[new Date(2011,09,24),2],[new Date(2012,06,01),3],[new Date(2012,08,19),4],[new Date(2012,12,03),5],[new Date(2014,05,26),6]],
+[[new Date(2009,05,16),1],[new Date(2010,02,12),2],[new Date(2010,03,20),3],[new Date(2010,04,24),4],[new Date(2010,06,03),5],[new Date(2010,07,10),6],[new Date(2010,10,14),7],[new Date(2010,11,14),8],[new Date(2010,12,26),9],[new Date(2011,05,20),10],[new Date(2011,07,15),11],[new Date(2011,09,29),12],[new Date(2011,10,19),13],[new Date(2011,10,25),14],[new Date(2012,02,14),15],[new Date(2012,03,25),16],[new Date(2012,04,23),17],[new Date(2012,05,17),18],[new Date(2012,07,09),19],[new Date(2012,10,14),20],[new Date(2012,11,20),21],[new Date(2012,12,08),22],[new Date(2013,03,26),23],[new Date(2013,04,15),24],[new Date(2013,05,14),25],[new Date(2013,06,03),26],[new Date(2013,09,29),27],[new Date(2013,10,25),28],[new Date(2013,12,08),29],[new Date(2014,02,14),30],[new Date(2014,12,15),31],[new Date(2014,12,27),32],[new Date(2015,02,01),33],[new Date(2015,08,28),34],[new Date(2015,10,16),35],[new Date(2016,01,29),36],[new Date(2016,06,09),37],[new Date(2017,06,08),38],[new Date(2017,09,11),39],[new Date(2017,09,28),40]],
+[[new Date(2009,09,10),1],[new Date(2010,05,20),2],[new Date(2010,09,11),3],[new Date(2011,01,22),4],[new Date(2011,09,23),5],[new Date(2011,12,12),6],[new Date(2012,05,17),7],[new Date(2012,07,21),8],[new Date(2013,01,27),9],[new Date(2013,08,03),10],[new Date(2014,02,27),11],[new Date(2014,05,24),12],[new Date(2014,10,07),13],[new Date(2014,12,03),14],[new Date(2015,02,01),15],[new Date(2015,03,26),16],[new Date(2015,08,19),17],[new Date(2015,11,24),18],[new Date(2016,02,17),19],[new Date(2016,11,02),20],[new Date(2016,12,09),21],[new Date(2017,01,24),22],[new Date(2017,03,17),23],[new Date(2017,06,01),24],[new Date(2017,08,19),25],[new Date(2017,10,09),26],[new Date(2017,12,23),27]],
+[[new Date(2010,01,28),1],[new Date(2010,03,01),2],[new Date(2010,09,02),3],[new Date(2011,09,20),4],[new Date(2011,11,04),5],[new Date(2011,12,11),6],[new Date(2012,03,30),7],[new Date(2012,11,02),8],[new Date(2013,06,27),9],[new Date(2013,11,11),10],[new Date(2013,12,26),11],[new Date(2014,03,15),12],[new Date(2014,04,28),13],[new Date(2014,07,09),14],[new Date(2014,09,27),15],[new Date(2014,10,21),16],[new Date(2014,12,19),17],[new Date(2014,12,23),18],[new Date(2015,03,18),19],[new Date(2015,09,14),20],[new Date(2015,12,13),21],[new Date(2015,12,24),22],[new Date(2016,03,14),23],[new Date(2017,08,16),24],[new Date(2018,02,01),25]],
+[[new Date(2010,02,11),1],[new Date(2010,03,04),2],[new Date(2010,04,22),3],[new Date(2010,05,28),4],[new Date(2010,08,14),5],[new Date(2010,09,21),6],[new Date(2010,11,06),7],[new Date(2010,11,21),8],[new Date(2011,01,20),9],[new Date(2011,03,05),10],[new Date(2011,03,11),11],[new Date(2011,04,14),12],[new Date(2011,05,07),13],[new Date(2011,06,10),14],[new Date(2011,07,16),15],[new Date(2011,08,05),16],[new Date(2011,09,10),17],[new Date(2011,10,26),18],[new Date(2011,10,28),19],[new Date(2012,01,20),20],[new Date(2012,02,24),21],[new Date(2012,04,03),22],[new Date(2012,05,04),23],[new Date(2012,06,20),24],[new Date(2012,06,29),25],[new Date(2012,09,13),26],[new Date(2012,10,04),27],[new Date(2012,12,11),28],[new Date(2013,01,31),29],[new Date(2013,02,11),30],[new Date(2013,03,19),31],[new Date(2013,05,15),32],[new Date(2013,05,25),33],[new Date(2013,07,19),34],[new Date(2013,08,08),35],[new Date(2013,08,28),36],[new Date(2013,09,18),37],[new Date(2013,11,18),38],[new Date(2013,12,06),39],[new Date(2014,01,24),40],[new Date(2014,02,21),41],[new Date(2014,04,03),42],[new Date(2014,04,10),43],[new Date(2014,05,17),44],[new Date(2014,05,22),45],[new Date(2014,07,02),46],[new Date(2014,07,28),47],[new Date(2014,08,02),48],[new Date(2014,08,13),49],[new Date(2014,09,17),50],[new Date(2014,10,29),51],[new Date(2014,12,05),52],[new Date(2014,12,13),53],[new Date(2015,01,21),54],[new Date(2015,01,31),55],[new Date(2015,03,13),56],[new Date(2015,03,25),57],[new Date(2015,05,20),58],[new Date(2015,07,15),59],[new Date(2015,07,24),60],[new Date(2015,09,02),61],[new Date(2015,10,02),62],[new Date(2015,10,08),63],[new Date(2015,10,31),64],[new Date(2015,12,06),65],[new Date(2016,02,05),66],[new Date(2016,02,10),67],[new Date(2016,03,23),68],[new Date(2016,06,11),69],[new Date(2016,06,24),70],[new Date(2016,07,28),71],[new Date(2016,08,19),72],[new Date(2016,09,08),73],[new Date(2016,11,11),74],[new Date(2016,11,19),75],[new Date(2016,12,07),76],[new Date(2016,12,18),77],[new Date(2017,01,21),78],[new Date(2017,03,01),79],[new Date(2017,03,19),80],[new Date(2017,04,18),81],[new Date(2017,08,18),82],[new Date(2017,09,24),83],[new Date(2017,10,15),84],[new Date(2017,11,18),85],[new Date(2018,01,12),86],[new Date(2018,01,20),87],[new Date(2018,03,01),88]],
+[[new Date(2010,04,08),1],[new Date(2010,06,15),2],[new Date(2010,06,21),3],[new Date(2011,08,17),4],[new Date(2013,08,22),5],[new Date(2013,11,21),6],[new Date(2014,06,19),7],[new Date(2014,11,06),8],[new Date(2015,03,25),9]],
+[[new Date(2010,04,16),1],[new Date(2010,04,27),2],[new Date(2010,09,08),3],[new Date(2010,09,30),4],[new Date(2011,02,26),5],[new Date(2011,06,27),6],[new Date(2011,10,02),7],[new Date(2011,10,28),8],[new Date(2015,09,23),9],[new Date(2015,11,17),10],[new Date(2016,02,07),11],[new Date(2016,03,24),12],[new Date(2016,05,29),13],[new Date(2016,06,04),14],[new Date(2017,05,25),15],[new Date(2017,06,23),16],[new Date(2017,09,22),17],[new Date(2017,12,02),18]],
+[[new Date(2010,06,02),1],[new Date(2013,11,22),2],[new Date(2016,02,16),3],[new Date(2017,10,13),4]],
+[[new Date(2010,06,22),1],[new Date(2014,04,09),2],[new Date(2016,09,13),3]],
+[[new Date(2010,10,19),1],[new Date(2011,07,13),2],[new Date(2011,12,28),3],[new Date(2012,09,17),4],[new Date(2013,02,06),5]],
+[[new Date(2010,11,02),1],[new Date(2011,05,04),2],[new Date(2011,10,05),3],[new Date(2013,08,31),4],[new Date(2017,07,14),5],[new Date(2017,12,26),6]],
+[[new Date(2011,06,15),1],[new Date(2012,02,03),2],[new Date(2015,02,02),3]],
+[[new Date(2012,05,17),1],[new Date(2012,07,28),2],[new Date(2012,11,14),3],[new Date(2013,04,26),4],[new Date(2013,06,07),5],[new Date(2013,09,11),6],[new Date(2013,12,25),7],[new Date(2013,12,28),8],[new Date(2014,03,23),9],[new Date(2014,05,06),10],[new Date(2014,05,23),11],[new Date(2014,06,14),12],[new Date(2014,07,03),13],[new Date(2014,10,30),14],[new Date(2014,11,30),15],[new Date(2014,12,25),16],[new Date(2015,02,27),17],[new Date(2015,03,31),18],[new Date(2015,06,05),19],[new Date(2015,06,23),20]],
+[[new Date(2012,09,09),1],[new Date(2014,06,30),2],[new Date(2015,07,10),3],[new Date(2015,12,16),4]],
+[[new Date(2012,12,12),1],[new Date(2016,02,07),2]],
+[[new Date(2013,01,30),1]],
+[[new Date(2013,09,14),1],[new Date(2016,12,20),2],[new Date(2018,01,17),3],[new Date(2018,02,03),4],[new Date(2018,02,27),5]],
+[[new Date(2013,09,25),1],[new Date(2014,11,21),2]],
+[[new Date(2016,10,17),1],[new Date(2016,12,15),2],[new Date(2017,08,26),3],[new Date(2017,10,31),4],[new Date(2017,11,12),5]],
+[[new Date(2017,01,09),1]],
+[[new Date(2017,11,21),1]],
+[[new Date(2018,01,21),1]]
+];
+option = {
+    backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [{
+        offset: 0,
+        color: '#f7f8fa'
+    }, {
+        offset: 1,
+        color: '#cdd0d5'
+    }]),
+    title: {
+        text: 'Rocket Launches'
+    },
+    //legend: {right: 10,data: ['v1', 'v2']},
+    xAxis: {
+        type: 'time',
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    yAxis: {
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        },
+        scale: true
+    },
+    series: [
+//        {data: data[0],type: 'scatter',symbolSize: 10,
+//        label: {emphasis: {show: true,formatter: function (param) {return 'v1: '+param.data[1];},position: 'top'}},
+//        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+//                shadowColor: 'rgba(120, 36, 50, 0.5)',
+//                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+//                    [{offset: 0,color: 'rgb(251, 118, 123)'}, {
+//                      offset: 1,color: 'rgb(204, 46, 72)'}])}}}
+
+        {data: data[0],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'Soviet Space Program: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#7F5200',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#FFD27F'}, {
+                      offset: 1,color: '#FFA500'}])}}},
+        {data: data[1],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'National Aeronautics and Space Administration: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#7F4D00',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#FFCD7F'}, {
+                      offset: 1,color: '#FF9B00'}])}}},
+        {data: data[2],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'Lockheed Martin: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#7F4800',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#FFC87F'}, {
+                      offset: 1,color: '#FF9100'}])}}},
+        {data: data[3],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'Rockwell International: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#7F4300',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#FFC37F'}, {
+                      offset: 1,color: '#FF8700'}])}}},
+        {data: data[4],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'Lockheed Space Operations Company: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#7F3F00',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#FFBE7F'}, {
+                      offset: 1,color: '#FF7E00'}])}}},
+        {data: data[5],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'Orbital Sciences Corporation: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#7F3A00',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#FFB97F'}, {
+                      offset: 1,color: '#FF7400'}])}}},
+        {data: data[6],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'Russian Federal Space Agency (ROSCOSMOS): '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#7F3500',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#FFB47F'}, {
+                      offset: 1,color: '#FF6A00'}])}}},
+        {data: data[7],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'Lockheed Martin Space Operations: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#7F3000',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#FFB07F'}, {
+                      offset: 1,color: '#FF6100'}])}}},
+        {data: data[8],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'United Space Alliance: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#7F2B00',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#FFAB7F'}, {
+                      offset: 1,color: '#FF5700'}])}}},
+        {data: data[9],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'Arianespace: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#7F2600',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#FFA67F'}, {
+                      offset: 1,color: '#FF4D00'}])}}},
+        {data: data[10],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'China Aerospace Science and Technology Corporation: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#7F2100',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#FFA17F'}, {
+                      offset: 1,color: '#FF4300'}])}}},
+        {data: data[11],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'Indian Space Research Organization: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#7F1D00',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#FF9C7F'}, {
+                      offset: 1,color: '#FF3A00'}])}}},
+        {data: data[12],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'SpaceX: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#7F1800',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#FF977F'}, {
+                      offset: 1,color: '#FF3000'}])}}},
+        {data: data[13],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'Sea Launch: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#7F1300',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#FF927F'}, {
+                      offset: 1,color: '#FF2600'}])}}},
+        {data: data[14],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'International Launch Services: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#7F0E00',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#FF8E7F'}, {
+                      offset: 1,color: '#FF1D00'}])}}},
+        {data: data[15],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'Mitsubishi Heavy Industries: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#7F0900',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#FF897F'}, {
+                      offset: 1,color: '#FF1300'}])}}},
+        {data: data[16],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'Khrunichev State Research and Production Space Center: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#7F0400',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#FF837F'}, {
+                      offset: 1,color: '#FF0900'}])}}},
+        {data: data[17],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'United Launch Alliance: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#7F0000',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#FF7F7F'}, {
+                      offset: 1,color: '#FF0000'}])}}},
+        {data: data[18],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'ISC Kosmotras: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#780000',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#F77F7F'}, {
+                      offset: 1,color: '#F00000'}])}}},
+        {data: data[19],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'Russian Space Forces: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#700000',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#F07F7F'}, {
+                      offset: 1,color: '#E10000'}])}}},
+        {data: data[20],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'Eurockot Launch Services: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#690000',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#E87F7F'}, {
+                      offset: 1,color: '#D20000'}])}}},
+        {data: data[21],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'Israel Aerospace Industries: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#610000',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#E17F7F'}, {
+                      offset: 1,color: '#C30000'}])}}},
+        {data: data[22],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'Starsem SA: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#590000',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#D97F7F'}, {
+                      offset: 1,color: '#B30000'}])}}},
+        {data: data[23],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'Land Launch: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#520000',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#D17F7F'}, {
+                      offset: 1,color: '#A40000'}])}}},
+        {data: data[24],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'Iranian Space Agency: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#4B0000',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#CA7F7F'}, {
+                      offset: 1,color: '#960000'}])}}},
+        {data: data[25],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'Russian Aerospace Defence Forces: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#430000',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#C37F7F'}, {
+                      offset: 1,color: '#870000'}])}}},
+        {data: data[26],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'Antrix Corporation Limited: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#3C0000',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#BB7F7F'}, {
+                      offset: 1,color: '#780000'}])}}},
+        {data: data[27],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'Korean Committee of Space Technology: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#340000',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#B37F7F'}, {
+                      offset: 1,color: '#690000'}])}}},
+        {data: data[28],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'Korea Aerospace Research Institute: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#2D0000',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#AC7F7F'}, {
+                      offset: 1,color: '#5A0000'}])}}},
+        {data: data[29],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'Japan Aerospace Exploration Agency: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#250000',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#A57F7F'}, {
+                      offset: 1,color: '#4B0000'}])}}},
+        {data: data[30],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'China Aerospace Science and Industry Corporation: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#1E0000',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#9D7F7F'}, {
+                      offset: 1,color: '#3C0000'}])}}},
+        {data: data[31],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'Orbital ATK: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#160000',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#967F7F'}, {
+                      offset: 1,color: '#2D0000'}])}}},
+        {data: data[32],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'ExPace: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#0F0000',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#8E7F7F'}, {
+                      offset: 1,color: '#1E0000'}])}}},
+        {data: data[33],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'China Great Wall Industry Corporation: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#070000',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#877F7F'}, {
+                      offset: 1,color: '#0F0000'}])}}},
+        {data: data[34],type: 'scatter',symbolSize: 10,
+        label: {emphasis: {show: true,formatter: function (param) {return 'Rocket Lab Ltd: '+param.data[1];},position: 'left'}},
+        itemStyle: {normal: {shadowBlur: 10,shadowOffsetY: 5,
+                shadowColor: '#000000',
+                color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, 
+                    [{offset: 0,color: '#7F7F7F'}, {
+                      offset: 1,color: '#000000'}])}}}
+  ]
+};;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+   </body>
+</html>
