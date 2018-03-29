@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<script src="lib/htmlwidgets-1.0/htmlwidgets.js"></script>
+<script src="lib/jquery-1.12.4/jquery.min.js"></script>
+<script src="lib/threejs-85/three.min.js"></script>
+<script src="lib/threejs-85/Detector.js"></script>
+<script src="lib/threejs-85/Projector.js"></script>
+<script src="lib/threejs-85/CanvasRenderer.js"></script>
+<script src="lib/threejs-85/TrackballControls.js"></script>
+<script src="lib/threejs-85/StateOrbitControls.js"></script>
+<script src="lib/scatterplotThree-binding-0.3.1/scatterplotThree.js"></script>
+<link href="lib/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="lib/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+
+</head>
+<body style="background-color:white;">
+<div id="htmlwidget_container">
+  <div id="htmlwidget-364d50ae9614921b19f7" style="width:960px;height:500px;" class="scatterplotThree html-widget"></div>
+</div>
+<script type="application/json" data-for="htmlwidget-364d50ae9614921b19f7"> 
+      {"x": xxxDATAxxx ,"evals":[],"jsHooks":[]} 
+</script>
+<script type="application/htmlwidget-sizing" data-for="htmlwidget-364d50ae9614921b19f7">{"viewer":{"width":450,"height":350,"padding":0,"fill":true},"browser":{"width":960,"height":500,"padding":0,"fill":true}}</script>
+</body>
+</html>
