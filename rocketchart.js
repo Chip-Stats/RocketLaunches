@@ -4,7 +4,7 @@ function gvisDatarocketchart () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
- [new Date(1961,3,12),1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,null],
+ [new Date(1961,03,12),1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,null],
  [new Date(1961,7,6),2,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,null],
  [
 new Date(1962,1,20),,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,null
